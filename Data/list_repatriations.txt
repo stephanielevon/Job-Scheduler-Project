@@ -1,0 +1,7 @@
+1:NCBI/Genomes/:ftp:ftp.ncbi.nih.gov:/genomes/Drosophila_melanogaster/RELEASE_5_48/CHR_2/:NT_033778.faa
+2:NCBI/Genomes/:ftp:ftp.ncbi.nih.gov:/genomes/Alligator_mississippiensis/:allcontig.agp.gz
+3:IMAGES:http:google.fr:/images/branding/googlelogo/2x/:googlelogo_color_272x92dp.png
+4:IMAGES:http:actuhightech.com:/wp-content/uploads/2014/09/:Jaime-Facebook.jpg
+5:IMAGES:http:univ-rouen.fr:/images/:logo.png
+6:NCBI:ftp:ftp.ncbi.nih.gov:/genomes/:README.txt
+7:IMAGES:http:static.kikvid.com:/crop/1600/600/uploads/channels/:54b020b412714542acbcf51ed2b6cd2c.jpg

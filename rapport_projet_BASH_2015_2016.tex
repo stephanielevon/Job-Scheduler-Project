@@ -1,0 +1,201 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[utf8]{inputenc}  
+\usepackage[T1]{fontenc}   
+\usepackage{hyperref}
+\usepackage[english,francais]{babel}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{hmargin=2.5cm,vmargin=1.5cm}
+
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{Rapport du projet BASH : \\ Rapatriement automatique de ressources}
+\author{LEDEE Maxime \& LEVON Stéphanie }
+\date{Décembre 2015}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+
+%----------------------------------------------------------------------------------------
+%	BODY
+%----------------------------------------------------------------------------------------
+\newpage
+
+
+%------------------
+%	SECTION 1
+%------------------
+\section{Structure du programme}
+	
+	\subsection{Les banques de données}
+	
+		\subsubsection{Le répertoire Data/}
+		Il contient quatre fichiers qui contiennent respectivement les données relatives aux utilisateurs du programme, 
+		les demandes de rapatriements de l'ensemble des utilisateurs ainsi que les stratégies de rapatriements (qui rapatrie quoi et où). 
+		Le dernier script contient les périodicités suivant la mise en forme cron. \\
+	
+		\subsubsection{Le fichier Log/get\_data.log}
+		Il contient les historiques de tentatives de rapatriement de données.
+		
+		\subsubsection{Le répertoire Reports/}
+		Ce répertoire contient les rapports qui sont générés depuis le menu principal du programme. Il contient également un répertoire caché nommé ".model/Document" stockant des fichiers au format .tex et .sty .	
+	
+	\subsection{Les scripts}
+	
+		\subsubsection{main.sh}
+			Au sein du répertoire du projet, un script main.sh a été créé.
+			Ce fichier permet :
+			\begin{itemize}
+				\item d'afficher le Menu Principal par l'intermédiaire d'une fonction "displayMenuGenerationReport". Ce menu liste plusieurs fonctionnalités du programme :
+				\begin{itemize}
+					\item Génération d'un rapport
+					\item Gestion de la liste des utilisateurs
+					\item Gestion de la liste des ressources à rapatrier
+					\item Gestion de la liste des stratégies
+				\end{itemize}
+				\item de rappatrier une données à partir d'un identifiant d'une stratégie, 
+				\item de générer un rapport en fonction des critères de recherche : pour un ou tous les utilisateurs, et optionnellement sur un laps de temps donné. Cette fonction se nomme "generateReport()".
+				\item et d'initialiser l'ensemble des variables (par exemples : chemins vers les autres scripts).
+			\end{itemize}
+		Une brève description des scripts contenus dans le répertoire Bin/, codés également en bash, est présentée dans les sections suivantes. 
+		Ces scripts permettent de gérer les utilisateurs, les rapatriements et les stratégies.
+
+		\subsubsection{Bin/gestion\_user.sh}
+			\begin{itemize}
+				\item init: initialise les variables, notamment le fichier DATA/list\_users.txt
+				\item displayMenu: affiche le menu "Utilisateurs"
+				\item listUsers: affiche la liste des utilisateurs existants
+				\item addUsers: ajoute un utilisateur avec les champs: Nom, Prénom et adresse mail
+				\item getNewId: permet de récupérer le dernier Id de la liste des utilisateurs et attribue un nouvel Id au nouvel utilisateurs
+				\item delUser: permet de supprimer un ou plusieurs utilisateur(s) à la fois
+			\end{itemize}
+	
+		\subsubsection{Bin/gestion\_repatriations.sh}
+			\begin{itemize}
+				\item init: initialise les variables, notamment le fichier DATA/list\_repatriations.txt
+				\item displayMenu: affiche le menu "Rapatriements"
+				\item listRepatriations: affiche la liste des rapatriements existants
+				\item addRepatriation: ajoute un rapatriement avec les champs: Répertoire de destination, adresse du fichier à rapatrier
+				\item getNewId: permet de récupérer le dernier Id de la liste des rapatriements et attribue un nouvel Id au nouveau rapatriement
+				\item delRepatriation: permet de supprimer un ou plusieurs rapatriement(s) à la fois
+			\end{itemize}
+	
+		\subsubsection{Bin/gestion\_strategies.sh}
+			\begin{itemize}
+				\item init: initialise les variables, notamment le fichier DATA/list\_strategies.txt
+				\item displayMenu: affiche le menu "Stratégies"
+				\item listStrategy: affiche la liste des stratégies existantes
+				\item addStrategy: ajoute une stratégie avec les champs: Utilisateur, source du fichier à rapatrier et choix de la periodicité. Cette interface propose également à l'utilisateur de garder une trace du rapatriement ou non (log). 
+				\item getNewId: permet de récupérer le dernier Id de la liste des stratégies et attribue un nouvel Id à la nouvelle stratégies
+				\item delStrategy: permet de supprimer une ou plusieurs stratégies à la fois
+				\item addCron: ajoute au fichier mycron la commande à réaliser pour le rapatriement, conforme à la syntaxe demandée par crontab. 
+			\end{itemize}
+	
+%------------------
+%	SECTION 2
+%------------------
+\section{Notes d'utilisation}
+	\subsection{Les fonctions liées aux utilisateurs}
+		Un utilisateur n'est ajouté que s'il fournit au minimum un des trois champs demandés. 
+		Un utilisateur est supprimé si et seulement si aucune stratégie ne lui est associée. 
+
+	\subsection{Les fonctions liées aux rapatriements}
+		Un rapatriement n'est enregistré que si les 2 champs demandés sont remplis. 
+		De même, un rapatriement est supprimé si et seulement si aucune stratégie ne lui est associée. 
+
+	\subsection{Les fonctions liées aux stratégies}
+		La modification d'une stratégie est possible pour la périodicité et la tracabilité. L'utilisateur doit remplir ces deux champs pour l'enregistrement de la modification.
+
+	\subsection{Autre fonctionnalité}
+		./main.sh [--help] [-h]
+
+%------------------
+%	SECTION 3
+%------------------
+\section{Intéraction entre les scripts}
+	Lorsque l'utilisateur choisit d'afficher la liste des utilisateurs/rapatriements/stratégies, la seule option qui lui est proposée est de revenir au Menu Utilisateur. A partir de ce sous-menu, l'utilisateur peut également revenir au Menu principal. 
+	
+	Lorsqu'un(e) utilisateur/rapatriment/stratégie est ajouté(e)/modifié(e)/supprimé(e), le Menu Principal est affiché.
+
+	Au contraire, si l'ajout d'un(e) utilisateur/rapatriment/stratégie ou sa modification/suppression n'a pas été prise en compte, l'utilisateur retourne au sous Menu adéquat.\\
+	\\En résumé: \\Reussite de la tâche: retour au Menu Principal. \\Echec de la tâche : retour au sous-menu correspondant. 
+
+%------------------
+%	SECTION 4
+%------------------
+\section{Génération d'un rapport}
+	L'utilisateur peut générer un rapport en fonction des critères de recherche :
+	\begin{itemize}
+		\item Recherche par utilisateur. Par défault, ce champ est sur "ALL"
+		\item Recherche selon une période. Par défault, la date de début vaut "01-01-0001" et la date de fin vaut la date actuel (au format "DD-MM-YYYY"
+	\end{itemize}
+	Une liste déroulante nommé "Type de rapport" est également présent. Actuellement, elle ne contient qu'une seule valeur : "Document".
+	La génération d'un rapport nécessite :
+	\begin{itemize}
+		\item le fichier "Log/get\_date.log"
+		\item l'identifiant d'un utilisateur ou le mot clef "ALL"
+		\item des modèles LaTeX au format .tex . Ces fichiers sont situés dans un répertoire caché "Reports/.model/Document"
+		\item et le paquet pgf-pie.sty qui est aussi stocké dans Reports/.model/Document . Ce paquet est automatiquement copié dans le répertoire $\sim$/texmf/tex/latex/local/
+	\end{itemize}
+	Le nom du rapport produit prend la forme suivante : USER\_date-début\_date-fin.pdf. \\ 
+	Exemples : ALL\_17-12-2015\_01-01-2016.pdf ou Maxime\_17-12-2015\_01-01-2016.pdf
+
+%------------------
+%	SECTION 5
+%------------------
+\section{Informations à propos du logiciel}
+	L'utilisateur peut accéder à différentes informations telles que la version du logiciel, le nom des auteurs et l'organisation dont ces derniers dépendent. 
+	Le double clique n'est pas autorisé et a pour conséquence la fermeture de l'interface.
+
+%------------------
+%	SECTION 6
+%------------------
+\section{Modules requis}
+	Le programme requiert pdflatex, zenity et yad.
+
+%------------------
+%	SECTION 7
+%------------------
+\section{Perspectives d'évolution}
+	\subsection{Fonctionnalités liées à la génération du rapport}
+		La génération du rapport pourrait comporter plus d'informations telles que des graphiques (cf. maquette ci-jointe). \\
+		Actuellement, un seul type de rapport est accessible ("Document"), mais nous pourrions en définir des nouveaux. 
+		Par exemple, les types "Website" et "Presentation (slides)". Ces types nécessiteront des nouveaux modèles au format .html et .tex .
+		
+	\subsection{Fonctionnalités liées au rapatriement d'une ressource}
+		Actuellement nous utilisons "wget", mais d'autres outils pour le rapatriement existent et auraient pu être utilisés. Nous pouvons citer :
+		\begin{itemize}
+			\item "curl" qui fournit des status d'erreurs suplémentaires par rapport à "wget"
+			\item "rsync" qui est efficace pour télécharger des fichiers imposants
+			\item "ftp" . Exemple d'utilisation : \\ ftp $<$TRAITEMENT$>$ $<<$ BYEBYE \\ newer \\ BYEBYE
+			\item "mirror.pl" qui est un paquet Perl
+		\end{itemize}
+		Une des améliorations envisageables serait de faire appel à un de ces outils selon le protocol, par exemple :
+		\begin{itemize}
+			\item "http" : utilisation de l'outil wget
+			\item "ftp" : utilisation de l'outil rsync
+			\item "local" : utilisation de la commande cp
+		\end{itemize}
+		Une autre fonctionnalité serait la possibilité d'utiliser des expressions régulières afin de rapatrier, par exemple, des fichiers dont le nom se terminerait par ".fastq", ou qui commencerait par "chrm\_".
+
+	\subsection{Structure du programme}
+		Un fichier de configuration .init pourrait être mis en place pour l'utilisateur afin de paramétrer, à souhait, des chemins de répertoires tels que Data/ , Log/ et Reports/  ou bien aussi des valeurs par défault pour des variables telles que \$typeReport.
+		
+	
+%----------------------------------------------------------------------------------------
+%	END OF DOCUMENT
+%----------------------------------------------------------------------------------------
+
+\end{document}

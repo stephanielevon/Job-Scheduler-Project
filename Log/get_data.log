@@ -1,0 +1,8 @@
+31-12-2015 14:41:45;1;LEDEE;Maxime;ledeemax@github.com;Data/NCBI/Genomes/;ftp;ftp://ftp.ncbi.nih.gov//genomes/Drosophila_melanogaster/RELEASE_5_48/CHR_2//NT_033778.faa;8;Server issued an error response (Répertoire ou Fichier source inexistant);0
+31-12-2015 14:41:51;2;LEVON;Stephanie;stephanielevon@github.com;Data/NCBI/Genomes/;ftp;ftp://ftp.ncbi.nih.gov//genomes/Alligator_mississippiensis//allcontig.agp.gz;0;Téléchargement réussie;97354
+31-12-2015 14:41:54;2;LEVON;Stephanie;stephanielevon@github.com;Data/IMAGES;http;http://google.fr//images/branding/googlelogo/2x//googlelogo_color_272x92dp.png;0;Téléchargement réussie;13504
+31-12-2015 14:41:56;5;NAVARRO;Kenn;cuddles@htf.net;Data/IMAGES;http;http://univ-rouen.fr//images//logo.png;4;Network failure;0
+04-12-2015 14:42:00;3;NOEL;Père;nono@peace.org;Data/NCBI;ftp;ftp://ftp.ncbi.nih.gov//genomes//README.txt;0;Téléchargement réussie;8047
+31-12-2015 14:42:04;7;LIPMAN;Michael;nutty@htf.net;Data/IMAGES;http;http://actuhightech.com//wp-content/uploads/2014/09//Jaime-Facebook.jpg;0;Téléchargement réussie;102639
+31-12-2015 14:42:07;4;LORBER;Nica;flaky@htf.net;Data/IMAGES;http;http://static.kikvid.com//crop/1600/600/uploads/channels//54b020b412714542acbcf51ed2b6cd2c.jpg;0;Téléchargement réussie;197384
+31-12-2015 14:51:23;2;LEVON;Stephanie;stephanielevon@github.com;Data/NCBI/Genomes/;ftp;ftp://ftp.ncbi.nih.gov//genomes/Alligator_mississippiensis//allcontig.agp.gz;0;Fichier distant pas plus récent que le fichier local;0

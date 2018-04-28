@@ -1,0 +1,40 @@
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	SUMMARY OF ONE USER
+%----------------------------------------------------------------------------------------
+
+\section{Résumé des rapatriements : __CURRENT_USER__}
+  \subsection{Protocol}
+    \begin{tikzpicture}
+      \pie[text=legend, sum=auto, radius=1]{TO-SUBSTITUTE-PROTOCOL}
+    \end{tikzpicture}
+
+  \subsection{Nombre total de tentatives de rapatriements : TO-SUBSTITUTE-NB-TOTAL-DL}
+    \begin{tikzpicture}
+      \pie[text=legend, sum=auto, radius=1]{TO-SUBSTITUTE-FAIL-SUCCESS}
+    \end{tikzpicture}
+    
+  \subsection{Liste des rapatriements réussis}
+    \scalebox{0.7}
+    {
+      \begin{tabular}{|c|c|c|c|}
+        \hline
+        Date & Source & Destination & Taille (byte) \\
+        \hline
+        TO-SUBSTITUTE-LIST-SUCCESS
+        \hline
+      \end{tabular}
+    }
+
+  \subsection{Liste des rapatriements échoués}
+    \scalebox{0.7}
+    {
+      \begin{tabular}{|c|c|c|}
+        \hline
+        Date & Source & Code error  \\
+        \hline
+        TO-SUBSTITUTE-LIST-FAIL
+        \hline
+      \end{tabular}
+    }

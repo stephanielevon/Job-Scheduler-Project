@@ -1,0 +1,4 @@
+journaliere:00 01 * * *
+hebdomadaire:00 01 * * 6
+mensuelle:00 01 1 * *
+annuelle:00 01 1 1 *

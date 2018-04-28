@@ -1,0 +1,7 @@
+1:1:1:journaliere:yes
+2:2:2:hebdomadaire:yes
+3:2:3:journaliere:yes
+4:5:5:mensuelle:yes
+5:3:6:annuelle:yes
+6:7:4:hebdomadaire:yes
+7:4:7:journaliere:yes
