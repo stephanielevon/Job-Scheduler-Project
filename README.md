@@ -10,6 +10,8 @@ The bash scripts should:
 - generate log files
 - generate a report for a given user and/or a given timelapse
 
+--------------------------------------------------------------------------------------------
+
 Dans le cadre du Master 2.1 Bioinformatique à Rouen, nous devons créer des scripts en BASH dans le but de :
 - gérer une liste d'utilisateurs
 - gérer une liste de fichiers à rapatrier
